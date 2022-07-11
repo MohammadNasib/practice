@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import './app.css';
+import Union from './Union';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [upazillaName, setUpazillaName] = useState('cox');
+
+    function onSelectFunc(e) {
+        setUpazillaName(e.target.value);
+    }
+    console.log(`upazilla name is : ${upazillaName}`);
+
+    return (
+        <div className='App'>
+            <input type='search' name='search' id='search' />
+
+            <div className='upazillaBox'>
+                <label htmlFor='upazilla'>Choose an upazilla: </label>
+
+                <select name='upazilla' id='upazilla' value={upazillaName} onChange={onSelectFunc}>
+                    <option value='cox'>cox</option>
+                    <option value='ukiya'>ukiya</option>
+                    <option value='ramo'>ramo</option>
+                </select>
+            </div>
+
+            <Union upazilla={upazillaName} />
+        </div>
+    );
 }
 
 export default App;
